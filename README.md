@@ -1,0 +1,1 @@
+Este projeto é um website desenvolvido com HTML, CSS e JavaScript, que oferece uma experiência de compra simples e organizada. Os usuários podem explorar três seções de produtos: cadernos, mochilas e garrafas, com uma navegação fácil e interface visualmente atraente.
