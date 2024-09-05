@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 20px;
+            }
+
+            nav ul li {
+                margin-left: 10px;
+            }
+
+            nav ul li a {
+                padding: 8px 10px;
+            }
+
+            section {
+                margin: 20px 10px;
+            }
+
+            .imagemAnuncio {
+                height: 150px;
+                width: 120px;
+            }
+
+            .priceValue {
+                font-size: 18px;
+            }
+
+            .minusIcon,
+            .plusIcon {
+                font-size: 20px;
+                margin: 0 5px;
+            }
+
+            .quantity {
+                font-size: 18px;
+            }
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0px;
+            width: 100%;
+            background-color: #61a521;
+            color: rgb(0, 0, 0);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            z-index: 1100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            /* Centraliza o menu principal */
+            padding: 0;
+        }
+
+        nav ul li {
+            position: relative;
+            text-align: center;
+        }
+
+        nav ul li a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+            /* Centraliza o texto */
+        }
+
+        nav ul li a:hover {
+            background-color: #393939;
+            transform: scale(1.05);
+            text-align: center;
+        }
+
+        .marcaHover ul {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            list-style: none;
+            padding: 16px;
+            flex-direction: column;
+            gap: 16px;
+            border-top: 4px solid lightblue;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            /* Centraliza o sub-menu */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            /* Centraliza o texto do sub-menu */
+        }
+
+
+        .marcaHover:hover ul {
+            display: flex;
+            white-space: pre;
+
+        }
+
+        .marcaHover li a {
+            color: #333;
+            padding: 8px 15px;
+            background-color: #ffffff;
+             border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            /* Centraliza o texto */
+        }
+
+        .marcaHover li a:hover {
+            background-color: #f7f7f7;
+
+        }
+
+        /* Espaçamento para compensar o header fixo */
+        .content {
+            padding-top: 100px;
+            margin: 0 20px;
+        }
+
+        section {
+            background-color: #b0b0b0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* section:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+         } */
+
+        section img {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        section h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        section p {
+            text-align: justify;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .back-to-menu {
+            display: inline-block;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-to-menu:hover {
+            background-color: #ccc;
+        }
+
+        /* Estilo do footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #333;
+            color: white;
+            margin-top: 40px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .imagemAnuncio {
+            height: 200px;
+            width: 150px;
+        }
+
+        .containerCategoria {
+            background-color: #e8e8e8;
+            padding: 16px;
+        }
+
+        .containerProdudo {
+            background-color: white;
+            padding: 60px;
+            text-align: center;
+        }
+
+        .containerProdudo:hover {
+            transform: translateY(-8px);
+        }
+
+        .backgroundCategoria:hover {
+            transform: translateY(-8px);
+        }
+
+        span {
+            font-size: 24px;
+            color: #333;
+            font-weight: bold;
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .priceValue {
+            font-size: 20px;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        /* Melhorando a interatividade dos botões de quantidade */
+        .minusIcon {
+            cursor: pointer;
+            color: #ff0000;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease, transform 0.2s ease;
+            background-color: transparent;
+        }
+
+        .plusIcon {
+            cursor: pointer;
+            color: #23c265;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease, transform 0.2s ease;
+            background-color: transparent;
+        }
+
+        .minusIcon:hover {
+            color: #ff0000;
+            transform: scale(1.2);
+        }
+
+        .plusIcon:hover {
+            color: #23c265;
+            transform: scale(1.2);
+        }
+
+        .quantity {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        #logo {
+            width: 100px;
+            height: 40px;
+            background-image: url('img/logo-removebg-preview.png');
+            background-size: cover;
+            background-position: center;
+            background-color: transparent;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .backgroundCategoria {
+            background-color: white;
+            padding: 32px;
+        }
+
+        .quantidadeProduto {
+            width: 30px;
+            text-align: center;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        #resumoVenda {
+            width: 100%;
+            display: flex;
+            justify-content: right;
+            gap: 10px;
+        }
+
+        .boxValorCarrinho {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+
+        }
+
+        .valorItensCar {
+            background-color: transparent;
+            border: none;
+            display: flex;
+            padding: 15px;
+            width: 150px;
+        }
+
+
+        .boxValorCarrinho {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+
+        }
+
+        .car {
+            background-color: transparent;
+            border: none;
+
+        }
+
+        .mais {
+            background-color: transparent;
+            border: none;
+        }
+
+        .menos {
+            background-color: transparent;
+            border: none;
+        }
+
+        .quantidadeProduto {
+            background-color: black;
+            border-color: rgb(255, 255, 255);
+            border-style: solid;
+            border-radius: 30%;
+            color: rgb(253, 253, 253);
+        }
+
+        .boxMaiseMenos {
+            background-color: rgb(0, 0, 0);
+            margin: 0px 260px 0px 260px;
+            border-style: solid;
+            border-color: #000000;
+            border-radius: 30px;
+            border-width: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div id="logo"></div>
+            <ul>
+                <li class="marcaHover">
+                    <a href="#caderno">Caderno</a>
+                    <ul>
+                        <li><a href="#caderno-espiral">Caderno Espiral</a></li>
+                        <li><a href="#caderno-brochura">Caderno Brochura</a></li>
+                        <li><a href="#caderno-artistico">Caderno Artístico</a></li>
+                    </ul>
+                </li>
+                <li class="marcaHover">
+                    <a href="#mochila">Mochila</a>
+                    <ul>
+                        <li><a href="#mochila-escolar">Mochila Escolar</a></li>
+                        <li><a href="#mochila-viagem">Mochila de Viagem</a></li>
+                        <li><a href="#mochila-esportiva">Mochila Esportiva</a></li>
+                    </ul>
+                </li>
+                <li class="marcaHover">
+                    <a href="#garrafa">Garrafa</a>
+                    <ul>
+                        <li><a href="#garrafa-portatil">Garrafa Portátil</a></li>
+                        <li><a href="#garrafa-esportiva">Garrafa Esportiva</a></li>
+                        <li><a href="#garrafa-termica">Garrafa Térmica</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="resumoVenda">
+            <label for="valorIncrementavel"><i class="fa fa-cart-plus" aria-hidden="true"></i> </label>
+            <input type="number" id="quantidadeProdutos" value="0" readonly class="car">
+        </div>
+
+        <div class="boxValorCarrinho">
+            <label for="valorTotalCarrinho" class="preco">Valor:</label>
+            <input type="number" id="valorTotalCarrinho" value="0" readonly readonly style="font-size: 17px;"
+                class="valorItensCar">
+        </div>
+
+
+    </header>
+
+
+    <main class="content">
+        <section id="caderno">
+            <div class="backgroundCategoria">
+                <div class="containerCategoria">
+                    <h2>Caderno</h2>
+                    <img class="imagemAnuncio" src="img/caderno.jpg" alt="Caderno">
+                    <p>
+                        Um caderno é um item de papelaria utilizado para anotações, estudos, planejamentos e organização
+                        de informações. Ele geralmente é composto por uma capa, que pode ser rígida ou flexível, e
+                        folhas
+                        internas de papel, que podem ser pautadas (com linhas), quadriculadas ou lisas.
+                    </p>
+                </div>
+            </div>
+
+
+            <div id="caderno-espiral"></div>
+            <div class="containerProdudo">
+                <h2>Caderno Espiral</h2>
+                <img class="imagemAnuncio" src="img/cadernoespiral.jpg" alt="Caderno Espiral">
+                <p>
+                    O caderno espiral é prático para o uso diário, facilitando a abertura das páginas.
+                </p>
+                <div class="boxMaiseMenos">
+                    <button onclick="decrementarValorEspiral()" class="menos">
+                        <i class="fa fa-minus-square minusIcon" aria-hidden="true"></i>
+                    </button>
+                    <label for="qtEspiral"></label>
+                    <input id="qtEspiral" class="quantidadeProduto" type="number" value="0" readonly />
+
+                    <button onclick="encrementarValorEspiral()" class="mais">
+                        <i class="fa fa-plus-square plusIcon" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="caderno-brochura"></div>
+            <div class="containerProdudo">
+                <h2>Caderno Brochura</h2>
+                <img class="imagemAnuncio" src="img/cadernobrochura.jpg" alt="Caderno Brochura">
+                <p>
+                    O caderno brochura é ideal para quem prefere um encadernamento mais robusto.
+                </p>
+
+                <div class="boxMaiseMenos">
+                    <button onclick="decrementarValorBrochura()" class="menos">
+                        <i class="fa fa-minus-square minusIcon" aria-hidden="true"></i>
+                    </button>
+
+                    <label for="qtBroxura"></label>
+                    <input id="qtBroxura" class="quantidadeProduto" type="number" value="0" readonly />
+
+                    <button onclick="encrementarValorBrochura()" class="mais">
+                        <i class="fa fa-plus-square plusIcon" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="caderno-artistico"></div>
+            <div class="containerProdudo">
+                <h2>Caderno Artístico</h2>
+                <img class="imagemAnuncio" src="img/cadernoartístico.jpg" alt="Caderno Artístico">
+                <p>
+                    O caderno artístico possui folhas de alta gramatura, perfeitas para desenho e pintura.
+                </p>
+                <div class="boxMaiseMenos">
+                    <button onclick="decrementarValorArte()" class="menos">
+                        <i class="fa fa-minus-square minusIcon" aria-hidden="true"></i>
+                    </button>
+                    <label for="qtArte"></label>
+                    <input id="qtArte" class="quantidadeProduto" type="number" value="0" readonly />
+
+                    <button onclick="encrementarValorArte()" class="mais">
+                        <i class="fa fa-plus-square plusIcon" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="mochila">
+            <div class="backgroundCategoria">
+                <div class="containerCategoria">
+                    <h2>Mochila</h2>
+                    <img class="imagemAnuncio" src="img/mochila.jpg" alt="Mochila">
+                    <p>
+                        Bolsa versátil com alças para os ombros, usada para carregar itens variados.
+                    </p>
+                </div>
+            </div>
+
+            <div id="mochila-escolar"></div>
+            <div class="containerProdudo">
+                <h2>Mochila Escolar</h2>
+                <img class="imagemAnuncio" src="img/mochilaescolar.jpg" alt="Mochila Escolar">
+                <p>
+                    Feita para transportar livros e material escolar, com compartimentos para organização.
+                </p>
+                <div class="boxMaiseMenos">
+                    <button onclick="decrementarValorEscolar()" class="menos">
+                        <i class="fa fa-minus-square minusIcon" aria-hidden="true"></i>
+                    </button>
+                    <label for="qtEscolar"></label>
+                    <input id="qtEscolar" class="quantidadeProduto" type="number" value="0" readonly />
+
+                    <button onclick="encrementarValorEscolar()" class="mais">
+                        <i class="fa fa-plus-square plusIcon" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mochila-viagem"></div>
+            <div class="containerProdudo">
+                <h2>Mochila Viagem</h2>
+                <img class="imagemAnuncio" src="img/MochiladeViagem.jpg" alt="Mochila Viagem">
+                <p>
+                    Maior e mais resistente, ideal para transportar pertences durante viagens, com espaço para roupas e
+                    acessórios.
+                </p>
+                <div class="boxMaiseMenos">
+                    <button onclick="decrementarValorViagem()" class="menos">
+                        <i class="fa fa-minus-square minusIcon" aria-hidden="true"></i>
+                    </button>
+                    <label for="qtViagem"></label>
+                    <input id="qtViagem" class="quantidadeProduto" type="number" value="0" readonly />
+
+                    <button onclick="encrementarValorViagem()" class="mais">
+                        <i class="fa fa-plus-square plusIcon" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mochila-esportiva"></div>
+            <div class="containerProdudo">
+                <h2>Mochila Esportiva</h2>
+                <img class="imagemAnuncio" src="img/MochilaEsportiva.jpg" alt="Mochila Esportiva">
+                <p>
+                    Projetada para atividades físicas, é leve e feita de materiais resistentes a suor e umidade.
+                </p>
+                <div class="boxMaiseMenos">
+                    <button onclick="decrementarValorEsportiva()" class="menos">
+                        <i class="fa fa-minus-square minusIcon" aria-hidden="true"></i>
+                    </button>
+                    <label for="qtEsportiva"></label>
+                    <input id="qtEsportiva" class="quantidadeProduto" type="number" value="0" readonly />
+
+                    <button onclick="encrementarValorEsportiva()" class="mais">
+                        <i class="fa fa-plus-square plusIcon" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="garrafa">
+            <div class="backgroundCategoria">
+                <div class="containerCategoria">
+                    <h2>Garrafa</h2>
+                    <img class="imagemAnuncio" src="img/garrafa.jpg" alt="Garrafa">
+                    <p>
+                        Recipiente portátil para armazenar e transportar líquidos, disponível em diversos materiais e
+                        tamanhos.
+                    </p>
+                </div>
+            </div>
+
+            <div id="garrafa-portatil"></div>
+            <div class="containerProdudo">
+                <h2>Garrafa Portátil</h2>
+                <img class="imagemAnuncio" src="img/garrafaportatil.jpg" alt="Garrafa Portátil">
+                <p>
+                    Compacta e fácil de transportar, ideal para o uso diário em diversas situações.
+                </p>
+                <div class="boxMaiseMenos">
+                    <button onclick="decrementarValorPortatil()" class="menos">
+                        <i class="fa fa-minus-square minusIcon" aria-hidden="true"></i>
+                    </button>
+                    <label for="qtPortatil"></label>
+                    <input id="qtPortatil" class="quantidadeProduto" type="number" value="0" readonly />
+
+                    <button onclick="encrementarValorPortatil()" class="mais">
+                        <i class="fa fa-plus-square plusIcon" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="garrafa-esportiva"></div>
+            <div class="containerProdudo">
+                <h2>Garrafa Esportiva</h2>
+                <img class="imagemAnuncio" src="img/garrafaesportiva.jpg" alt="Garrafa Esportiva">
+                <p>
+                    Desenvolvida para praticantes de esportes, com design ergonômico e materiais resistentes.
+                </p>
+                <div class="boxMaiseMenos">
+                    <button onclick="decrementarValorGEsportiva()" class="menos">
+                        <i class="fa fa-minus-square minusIcon" aria-hidden="true"></i>
+                    </button>
+                    <label for="qtGEsportiva"></label>
+                    <input id="qtGEsportiva" class="quantidadeProduto" type="number" value="0" readonly />
+
+                    <button onclick="encrementarValorGEsportiva()" class="mais">
+                        <i class="fa fa-plus-square plusIcon" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="garrafa-termica"></div>
+            <div class="containerProdudo">
+                <h2>Garrafa Térmica</h2>
+                <img class="imagemAnuncio" src="img/garrafatermica.jpg" alt="Garrafa Térmica">
+                <p>
+                    Perfeita para manter líquidos quentes ou frios por mais tempo, com isolamento térmico eficiente.
+                </p>
+                <div class="boxMaiseMenos">
+                    <button onclick="decrementarValorTermica()" class="menos">
+                        <i class="fa fa-minus-square minusIcon" aria-hidden="true"></i>
+                    </button>
+                    <label for="qtTermica"></label>
+                    <input id="qtTermica" class="quantidadeProduto" type="number" value="0" readonly />
+
+                    <button onclick="encrementarValorTermica()" class="mais">
+                        <i class="fa fa-plus-square plusIcon" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+
+        var valorCarrinho = 0;
+        var quantidadeProdutos = 0;
+        var valorEspiral = 0;
+        var valorBrochurao = 0;
+        var valorArte = 0;
+        var valorEscolar = 0;
+        var valorViagem = 0;
+        var valorEsportiva = 0;
+        var valorPortatil = 0;
+        var valorGEsportiva = 0;
+        var valorTermica = 0;
+
+        function encrementarValorEspiral() {
+            valorEspiral = valorEspiral + 1;
+            quantidadeProdutos = quantidadeProdutos + 1;
+            valorCarrinho = valorCarrinho + 30;
+            document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+            document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+            document.getElementById('qtEspiral').value = valorEspiral;
+        }
+
+        function decrementarValorEspiral() {
+            if (valorEspiral > 0) {
+                valorEspiral = valorEspiral - 1;
+                quantidadeProdutos = quantidadeProdutos - 1;
+                valorCarrinho = valorCarrinho - 30;
+                document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+                document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+                document.getElementById('qtEspiral').value = valorEspiral;
+            }
+        }
+        function encrementarValorBrochura() {
+            valorBrochurao = valorBrochurao + 1;
+            quantidadeProdutos = quantidadeProdutos + 1;
+            valorCarrinho = valorCarrinho + 30;
+            document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+            document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+            document.getElementById('qtBroxura').value = valorBrochurao;
+        }
+
+        function decrementarValorBrochura() {
+            if (valorBrochurao > 0) {
+                valorBrochurao = valorBrochurao - 1;
+                quantidadeProdutos = quantidadeProdutos - 1;
+                valorCarrinho = valorCarrinho - 30;
+                document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+                document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+                document.getElementById('qtBroxura').value = valorBrochurao;
+            }
+        }
+
+        function encrementarValorArte() {
+            valorArte = valorArte + 1;
+            quantidadeProdutos = quantidadeProdutos + 1;
+            valorCarrinho = valorCarrinho + 30;
+            document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+            document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+            document.getElementById('qtArte').value = valorArte;
+        }
+
+        function decrementarValorArte() {
+            if (valorArte > 0) {
+                valorArte = valorArte - 1;
+                quantidadeProdutos = quantidadeProdutos - 1;
+                valorCarrinho = valorCarrinho - 30;
+                document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+                document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+                document.getElementById('qtArte').value = valorArte;
+            }
+        }
+        function encrementarValorEscolar() {
+            valorEscolar = valorEscolar + 1;
+            quantidadeProdutos = quantidadeProdutos + 1;
+            valorCarrinho = valorCarrinho + 30;
+            document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+            document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+            document.getElementById('qtEscolar').value = valorEscolar;
+        }
+
+        function decrementarValorEscolar() {
+            if (valorEscolar > 0) {
+                valorEscolar = valorEscolar - 1;
+                quantidadeProdutos = quantidadeProdutos - 1;
+                valorCarrinho = valorCarrinho - 30;
+                document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+                document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+                document.getElementById('qtEscolar').value = valorEscolar;
+            }
+        }
+
+        function encrementarValorViagem() {
+            valorViagem = valorViagem + 1;
+            quantidadeProdutos = quantidadeProdutos + 1;
+            valorCarrinho = valorCarrinho + 30;
+            document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+            document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+            document.getElementById('qtViagem').value = valorViagem;
+        }
+
+        function decrementarValorViagem() {
+            if (valorViagem > 0) {
+                valorViagem = valorViagem - 1;
+                quantidadeProdutos = quantidadeProdutos - 1;
+                valorCarrinho = valorCarrinho - 30;
+                document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+                document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+                document.getElementById('qtViagem').value = valorViagem;
+            }
+        }
+
+        function encrementarValorEsportiva() {
+            valorEsportiva = valorEsportiva +1;
+            quantidadeProdutos = quantidadeProdutos + 1;
+            valorCarrinho = valorCarrinho + 30;
+            document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+            document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+            document.getElementById('qtEsportiva').value = valorEsportiva;
+        }
+
+        function decrementarValorEsportiva() {
+            if (valorEsportiva > 0) {
+                valorEsportiva = valorEsportiva - 1;
+                quantidadeProdutos = quantidadeProdutos - 1;
+                valorCarrinho = valorCarrinho - 30;
+                document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+                document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+                document.getElementById('qtEsportiva').value = valorEsportiva;
+            }
+        }
+        function encrementarValorPortatil() {
+            valorPortatil = valorPortatil + 1;
+            quantidadeProdutos = quantidadeProdutos + 1;
+            valorCarrinho = valorCarrinho + 30;
+            document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+            document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+            document.getElementById('qtPortatil').value = valorPortatil;
+        }
+
+        function decrementarValorPortatil() {
+            if(valorPortatil > 0) {
+                valorPortatil = valorPortatil - 1;
+                quantidadeProdutos = quantidadeProdutos - 1;
+                valorCarrinho = valorCarrinho - 30;
+                document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+                document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+                document.getElementById('qtPortatil').value = valorPortatil;
+            }
+        }
+
+        function encrementarValorGEsportiva() {
+            valorGEsportiva = valorGEsportiva + 1;
+            quantidadeProdutos = quantidadeProdutos + 1;
+            valorCarrinho = valorCarrinho + 30;
+            document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+            document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+            document.getElementById('qtGEsportiva').value = valorGEsportiva;
+        }
+
+        function decrementarValorGEsportiva() {
+            if (valorGEsportiva > 0) {
+                valorGEsportiva = valorGEsportiva - 1;
+                quantidadeProdutos = quantidadeProdutos - 1;
+                valorCarrinho = valorCarrinho - 30;
+                document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+                document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+                document.getElementById('qtGEsportiva').value = valorGEsportiva;
+            }
+        }
+
+        function encrementarValorTermica() {
+            valorTermica = valorTermica + 1;
+            quantidadeProdutos = quantidadeProdutos + 1;
+            valorCarrinho = valorCarrinho + 30;
+            document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+            document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+            document.getElementById('qtTermica').value = valorTermica;
+        }
+
+        function decrementarValorTermica() {
+            if (valorTermica > 0) {
+                valorTermica = valorTermica - 1;
+                quantidadeProdutos = quantidadeProdutos - 1;
+                valorCarrinho = valorCarrinho - 30;
+                document.getElementById('quantidadeProdutos').value = quantidadeProdutos;
+                document.getElementById('valorTotalCarrinho').value = valorCarrinho;
+                document.getElementById('qtTermica').value = valorTermica;
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

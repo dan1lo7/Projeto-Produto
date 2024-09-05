@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://127.0.0.1:5500/produto.html#mochila-esportiva -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Estilo do header fixo */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        /* Estilo do menu */
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 15px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+
+        /* Estilo do submenu */
+        .marcaHover ul {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            list-style: none;
+            padding: 16px;
+            flex-direction: column;
+            gap: 16px;
+            border-top: 4px solid lightblue;
+            top: 100%;
+            left: 0;
+        }
+
+        .marcaHover:hover ul {
+            display: flex;
+        }
+
+        .marcaHover li a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            padding: 8px 15px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .marcaHover li a:hover {
+            background-color: #ccc;
+        }
+
+        /* Espaçamento para compensar o header fixo */
+        .content {
+            padding-top: 100px;
+            margin: 0 20px;
+        }
+
+        /* Estilo das Seção */
+        section {
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+
+
+
+        section img {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        section h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        section p {
+            text-align: justify;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo do link de voltar ao menu */
+        .back-to-menu {
+            display: inline-block;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-to-menu:hover {
+            background-color: #ccc;
+        }
+
+        /* Estilo do footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #333;
+            color: white;
+            margin-top: 40px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 20px;
+            }
+
+            nav ul li {
+                margin-left: 10px;
+            }
+
+            nav ul li a {
+                padding: 8px 10px;
+            }
+
+            section {
+                margin: 20px 10px;
+            }
+        }
+
+        .imagemAnuncio {
+            height: 200px;
+            width: 150px;
+        }
+
+        .containerCategoria {
+            background-color: #e8e8e8;
+            padding: 16px;
+        }
+
+        .containerProdudo {
+            background-color: white;
+            padding: 60px 16px 16px 16px;
+        }
+
+        .containerProdudo:hover {
+            transform: translateY(-8px);
+        }
+
+        .backgroundCategoria {
+            padding: 24px;
+            background-color: white;
+        }
+
+        .backgroundCategoria:hover {
+            transform: translateY(-8px);
+        }
+    </style>
+</head>
+
+<body cz-shortcut-listen="true">
+    <header>
+        <div id="logo" style="width: 100px; background-image: url(&#39;logo.jpg&#39;); background-size: cover; background-position: center;">
+        </div>
+
+        <nav>
+            <ul>
+                <li class="marcaHover">
+                    <a href="http://127.0.0.1:5500/produto.html#caderno">Caderno</a>
+                    <ul>
+                        <li><a href="http://127.0.0.1:5500/produto.html#caderno-espiral">Caderno Espiral</a></li>
+                        <li><a href="http://127.0.0.1:5500/produto.html#caderno-brochura">Caderno Brochura</a></li>
+                        <li><a href="http://127.0.0.1:5500/produto.html#caderno-artistico">Caderno Artístico</a></li>
+                    </ul>
+                </li>
+                <li class="marcaHover">
+                    <a href="http://127.0.0.1:5500/produto.html#mochila">Mochila</a>
+                    <ul>
+                        <li><a href="http://127.0.0.1:5500/produto.html#mochila-escolar">Mochila Escolar</a></li>
+                        <li><a href="http://127.0.0.1:5500/produto.html#mochila-viagem">Mochila de Viagem</a></li>
+                        <li><a href="http://127.0.0.1:5500/produto.html#mochila-esportiva">Mochila Esportiva</a></li>
+                    </ul>
+                </li>
+                <li class="marcaHover">
+                    <a href="http://127.0.0.1:5500/produto.html#garrafa">Garrafa</a>
+                    <ul>
+                        <li><a href="http://127.0.0.1:5500/produto.html#garrafa-termica">Garrafa Térmica</a></li>
+                        <li><a href="http://127.0.0.1:5500/produto.html#garrafa-esportiva">Garrafa Esportiva</a></li>
+                        <li><a href="http://127.0.0.1:5500/produto.html#garrafa-portatil">Garrafa Portátil</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content">
+        <section id="caderno">
+            <div class="backgroundCategoria">
+                <div class="containerCategoria">
+                    <h2>Caderno</h2>
+                    <img class="imagemAnuncio" src="./Produto_files/caderno.jpg" alt="Caderno">
+                    <p>Um caderno é um item de papelaria utilizado para anotações, estudos, planejamentos e organização
+                        de informações. Ele geralmente é composto por uma capa, que pode ser rígida ou flexível, e
+                        folhas
+                        internas de papel, que podem ser pautadas (com linhas), quadriculadas ou lisas.
+                    </p>
+                </div>
+            </div>
+
+            <div id="caderno-espiral"></div>
+            <div class="containerProdudo">
+                <h2>Caderno Espiral</h2>
+                <img class="imagemAnuncio" src="./Produto_files/cadernoespiral.jpg" alt="Caderno Espiral">
+                <p>O caderno espiral é prático para o uso diário, facilitando a abertura das páginas.</p>
+
+            </div>
+
+            <div id="caderno-brochura"></div>
+            <div class="containerProdudo">
+                <h2>Caderno Brochura</h2>
+                <img class="imagemAnuncio" src="./Produto_files/cadernobrochura.jpg" alt="Caderno Brochura">
+                <p>O caderno brochura é ideal para quem prefere um encadernamento mais robusto.</p>
+
+            </div>
+
+            <div id="caderno-artistico"></div>
+            <div class="containerProdudo">
+                <h2>Caderno Artístico</h2>
+                <img class="imagemAnuncio" src="./Produto_files/cadernoartístico.jpg" alt="Caderno Artístico">
+                <p>O caderno artístico possui folhas de alta gramatura, perfeitas para desenho e pintura.</p>
+
+            </div>
+        </section>
+
+        <section id="caderno">
+            <div class="backgroundCategoria">
+                <div class="containerCategoria">
+                    <h2>Caderno</h2>
+                    <img class="imagemAnuncio" src="./Produto_files/caderno.jpg" alt="Caderno">
+                    <p>Um caderno é um item de papelaria utilizado para anotações, estudos, planejamentos e organização
+                        de informações. Ele geralmente é composto por uma capa, que pode ser rígida ou flexível, e
+                        folhas
+                        internas de papel, que podem ser pautadas (com linhas), quadriculadas ou lisas.
+                    </p>
+                </div>
+            </div>
+
+            <div id="caderno-espiral"></div>
+            <div class="containerProdudo">
+                <h2>Caderno Espiral</h2>
+                <img class="imagemAnuncio" src="./Produto_files/cadernoespiral.jpg" alt="Caderno Espiral">
+                <p>O caderno espiral é prático para o uso diário, facilitando a abertura das páginas.</p>
+
+            </div>
+
+            <div id="caderno-brochura"></div>
+            <div class="containerProdudo">
+                <h2>Caderno Brochura</h2>
+                <img class="imagemAnuncio" src="./Produto_files/cadernobrochura.jpg" alt="Caderno Brochura">
+                <p>O caderno brochura é ideal para quem prefere um encadernamento mais robusto.</p>
+
+            </div>
+
+            <div id="caderno-artistico"></div>
+            <div class="containerProdudo">
+                <h2>Caderno Artístico</h2>
+                <img class="imagemAnuncio" src="./Produto_files/cadernoartístico.jpg" alt="Caderno Artístico">
+                <p>O caderno artístico possui folhas de alta gramatura, perfeitas para desenho e pintura.</p>
+
+            </div>
+        </section>
+
+        <section id="garrafa">
+            <div class="backgroundCategoria">
+                <div class="containerCategoria">
+                    <h2>Mochila</h2>
+                    <img class="imagemAnuncio" src="./Produto_files/garrafa.jpg" alt="Garrafa">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem ipsum rem
+                         illo esse, nobis unde! Accusamus dolorum aperiam cumque quasi repudiandae
+                          dolorem doloribus, alias non saepe impedit quae quo recusandae.
+                    </p>
+                </div>
+            </div>
+
+            <div id="garrafa-portatil"></div>
+            <div class="containerProdudo">
+                <h2>Garrafa Portátil</h2>
+                <img class="imagemAnuncio" src="./Produto_files/garrafaportatil.jpg" alt="Garrafa Portátil">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque quia eveniet necessitatibus 
+                    hic aspernatur voluptates possimus fugiat eum! Sunt, necessitatibus itaque est officiis ab iste 
+                    ipsam veniam quam blanditiis odit?</p>
+            </div>
+
+            <div id="garrafa-esportiva"></div>
+            <div class="containerProdudo">
+                <h2>Garrafa Esportiva</h2>
+                <img class="imagemAnuncio" src="./Produto_files/MochilaEsportiva.jpg" alt="Garrafa Esportiva">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint reprehenderit accusantium 
+                    consequatur voluptatibus eveniet harum veniam dolorum blanditiis quos cupiditate nam alia
+                   distinctio officia animi natus, totam perspiciatis similique mollitia!</p>
+            </div>
+
+            <div id="garrafa-termica"></div>
+            <div class="containerProdudo">
+                <h2>Garrafa Térmica</h2>
+                <img class="imagemAnuncio" src="./Produto_files/garrafatermica.jpg" alt="Garrafa Térmica">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi fuga nulla, 
+                    totam animi porro nostrum voluptatem ratione eaque culpa laboriosam nihil quas sit 
+                    eligendi dicta quos illo ad accusantium soluta!</p>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Empresa de Produtos. Todos os direitos reservados.</p>
+    </footer>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>
